@@ -1,0 +1,543 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "surface": "#121414",
+                  "surface-tint": "#c9c6c5",
+                  "surface-container-highest": "#333535",
+                  "on-primary-container": "#7b7979",
+                  "on-secondary-fixed": "#1c1b1b",
+                  "surface-container": "#1e2020",
+                  "secondary-fixed": "#e5e2e1",
+                  "on-primary-fixed-variant": "#474646",
+                  "surface-variant": "#333535",
+                  "outline": "#8e9192",
+                  "on-secondary": "#313030",
+                  "on-primary-fixed": "#1c1b1b",
+                  "surface-dim": "#121414",
+                  "secondary": "#c8c6c5",
+                  "on-tertiary-fixed": "#351000",
+                  "error-container": "#93000a",
+                  "primary-fixed-dim": "#c9c6c5",
+                  "on-tertiary-fixed-variant": "#7a3000",
+                  "primary-container": "#0b0b0b",
+                  "on-surface-variant": "#c4c7c7",
+                  "on-surface": "#e2e2e2",
+                  "outline-variant": "#444748",
+                  "surface-container-lowest": "#0c0f0f",
+                  "surface-glass": "rgba(20, 20, 20, 0.7)",
+                  "inverse-surface": "#e2e2e2",
+                  "tertiary-fixed-dim": "#ffb693",
+                  "on-tertiary": "#561f00",
+                  "on-error": "#690005",
+                  "inverse-primary": "#5f5e5e",
+                  "status-success": "#39FF14",
+                  "surface-bright": "#37393a",
+                  "on-tertiary-container": "#cd5400",
+                  "tertiary-container": "#1a0500",
+                  "primary-fixed": "#e5e2e1",
+                  "on-error-container": "#ffdad6",
+                  "surface-container-low": "#1a1c1c",
+                  "surface-container-high": "#282a2b",
+                  "secondary-container": "#4a4949",
+                  "on-background": "#e2e2e2",
+                  "luxury-gold": "#FFD700",
+                  "tertiary": "#ffb693",
+                  "error": "#ffb4ab",
+                  "on-secondary-fixed-variant": "#474646",
+                  "secondary-fixed-dim": "#c8c6c5",
+                  "on-primary": "#313030",
+                  "inverse-on-surface": "#2f3131",
+                  "primary": "#c9c6c5",
+                  "background": "#121414",
+                  "tertiary-fixed": "#ffdbcc",
+                  "on-secondary-container": "#bab8b7"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.125rem",
+                  "lg": "0.25rem",
+                  "xl": "0.5rem",
+                  "full": "0.75rem"
+          },
+          "spacing": {
+                  "unit": "8px",
+                  "margin-mobile": "20px",
+                  "margin-desktop": "64px",
+                  "gutter": "24px",
+                  "section-gap": "160px",
+                  "container-max": "1440px"
+          },
+          "fontFamily": {
+                  "body-lg": ["Inter"],
+                  "display-xl": ["Anton"],
+                  "body-md": ["Inter"],
+                  "label-bold": ["Inter"],
+                  "headline-lg-mobile": ["Anton"],
+                  "headline-lg": ["Anton"],
+                  "headline-md": ["Anton"],
+                  "label-sm": ["Inter"]
+          },
+          "fontSize": {
+                  "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+                  "display-xl": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                  "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}],
+                  "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                  "headline-lg-mobile": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                  "headline-lg": ["64px", {"lineHeight": "72px", "fontWeight": "400"}],
+                  "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                  "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-card {
+      background: rgba(20, 20, 20, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 215, 0, 0.3);
+      transform: translateY(-4px);
+    }
+    .masonry {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-auto-rows: 200px;
+      gap: 24px;
+    }
+    .masonry-item-tall { grid-row: span 2; }
+    .masonry-item-wide { grid-column: span 2; }
+    @media (max-width: 768px) {
+      .masonry-item-wide { grid-column: span 1; }
+      .masonry { grid-template-columns: 1fr; }
+    }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .parallax-bg { transform: scale(1.1); transition: transform 0.1s linear; }
+    .testimonial-slide { transition: opacity 0.5s ease-in-out; }
+
+    .form-input-group label { transition: all 0.3s ease; }
+    .form-input-group input:focus + label,
+    .form-input-group input:not(:placeholder-shown) + label {
+      color: #FFD700;
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Menu */
+    .mobile-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .mobile-overlay.active { opacity: 1; pointer-events: auto; }
+    .mobile-drawer { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .mobile-drawer.active { transform: translateX(0); }
+    .hamburger-line { transition: all 0.3s ease; }
+    .hamburger.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active .hamburger-line:nth-child(2) { opacity: 0; }
+    .hamburger.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-luxury-gold selection:text-surface overflow-x-clip">
+<!-- TopNavBar -->
+<nav class="bg-surface-glass backdrop-blur-md text-on-surface docked full-width top-0 sticky z-50 border-b border-white/10">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-display-xl text-headline-md uppercase text-on-surface tracking-tighter"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbuZ2U4GKW2f0_aBdbZ0uX8Wuz2deYbb_5_n6aGmkMnPS1roTf7ibI6yyYS6BITv9vQWmSfxb7ZDWQL9o8_cSEUZQlqnuQxjalVIj0L8k_6J9snqxwB5l4Qof-N68q73FlwhVhl7mwci-iEHT4FgEl-8yN3Ls7pERu8DKNUMT2DyFAX9rqfUQrm83x47ULRlP8Nzqp87fMysLK7oWhNOBhf7P4gRp3rAcTbpH0VGyj9y090ZsME46fWQuf2VJQuJLDzREmn004GFs" alt="RB FITNESS Logo" class="h-12 w-auto object-contain"></div>
+<div class="hidden md:flex gap-8 items-center font-body-md text-body-md">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="homeaPage.html">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors" href="servicesAndMembership.html">Services &amp; Memberships</a>
+<a class="text-on-tertiary-container font-bold border-b-2 border-on-tertiary-container pb-1" href="aboutAndContact.html">About &amp; Contact</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-on-surface text-surface px-4 sm:px-6 py-2 font-label-bold uppercase transition-all duration-300 hover:bg-luxury-gold active:scale-95 text-xs sm:text-sm">
+        Join Now
+      </button>
+<button class="md:hidden hamburger flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-[110]" id="hamburger-btn" aria-label="Toggle menu">
+<span class="hamburger-line block w-6 h-[2px] bg-on-surface"></span>
+<span class="hamburger-line block w-6 h-[2px] bg-on-surface"></span>
+<span class="hamburger-line block w-6 h-[2px] bg-on-surface"></span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Mobile Menu Overlay -->
+<div class="mobile-overlay fixed inset-0 bg-black/60 backdrop-blur-sm z-[105]" id="mobile-overlay"></div>
+<!-- Mobile Drawer -->
+<nav class="mobile-drawer fixed top-0 right-0 w-[75%] max-w-[320px] h-full bg-surface-container-lowest border-l border-white/10 z-[110] flex flex-col pt-24 px-8" id="mobile-drawer">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-lg uppercase py-4 border-b border-white/5" href="homeaPage.html">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-lg uppercase py-4 border-b border-white/5" href="servicesAndMembership.html">Services &amp; Memberships</a>
+<a class="text-on-tertiary-container font-bold text-lg uppercase py-4 border-b border-white/5" href="aboutAndContact.html">About &amp; Contact</a>
+<button class="bg-luxury-gold text-black px-6 py-4 font-label-bold uppercase mt-8 hover:brightness-110 transition-all">Join Now</button>
+</nav>
+<!-- About Hero -->
+<section class="relative h-[60vh] md:h-[819px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="RB Fitness Facility" class="w-full h-full object-cover opacity-60 grayscale transition-all duration-1000 parallax-bg" id="hero-parallax" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClEErG2dL1v0ZV-CN0STugBZAyDxSYh5K_iyt4sGJ3JERWYp9zvL9z2_NEYh-Dxjs1YTEH9gxafHf-CRtaC5FFZGtugHSyUnYBk4Lu9Bcwm2J-2KjLLhdHqC1xxuZxYWXq2GEjFOmy42_UoLhwUp30KxI2PAU-x1dCLLpS7SI6XDVoZ3bziFSH-d1zOXKYrrRdREvfyMIco3jCtA7Eq9Nc8mfAx_TVvplLuKzkfWL1gZGH734x3L8ZXBhICvBn2P0Zv0hXCikbh60">
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="max-w-3xl">
+<span class="text-luxury-gold font-label-bold uppercase tracking-widest mb-4 block reveal active">Est. 2018 — Mian Channu</span>
+<h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg lg:text-display-xl mb-6 reveal active" style="transition-delay: 0.2s;">BEYOND <br> PERFORMANCE</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl reveal active" style="transition-delay: 0.4s;">
+          At RB Fitness, we don't just build bodies; we forge discipline. Our facility represents the pinnacle of athletic excellence in Mian Channu, combining world-class equipment with a luxury editorial aesthetic.
+        </p>
+</div>
+</div>
+</section>
+<!-- Gym Story -->
+<section class="py-20 md:py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto reveal active">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<div class="lg:col-span-5">
+<h2 class="font-headline-lg text-headline-lg mb-8 uppercase leading-tight">HERITAGE <br> &amp; PASSION</h2>
+<div class="space-y-6 text-on-surface-variant">
+<p class="font-body-md text-body-md">
+            RB Fitness began with a singular vision: to bring the elite training environment of international luxury clubs to the heart of Mian Channu. Founded by fitness enthusiasts who believed that the environment is as crucial as the effort, we've created a sanctuary for those who take their transformation seriously.
+          </p>
+<p class="font-body-md text-body-md">
+            Every piece of equipment, every light fixture, and every training program is meticulously curated to foster an atmosphere of focus and intensity. We are the home of local champions and the starting point for countless personal revolutions.
+          </p>
+</div>
+</div>
+<div class="lg:col-span-7 relative h-[600px] overflow-hidden group">
+<img class="w-full h-full object-cover border border-white/5 transition-transform duration-1000 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8L6A0UAHFGolRJb9xtFbT-RQAmHnpp8PJX7W8uGNzVGQF3-Q1c-WxUvcvDSFBUhzOYoXpVXh0y1mSLrqWLBh4Xzaa2otIYsrmcOu6Rwwy3dzWga77p6BSnfkie3n6bQHk27hqRCw_jqDnjlX_rr2HGtCSnVF_jB3DgBP_QuY92iWOm9spXOmyWCy5j19CsX0FTduKiJWRiI0_PBGj3nvvWgRKYVjVh_mVss73xefx6lvqonhORn76cFm_tUHMe4M2SeU9WycEKK8">
+<div class="absolute -bottom-8 -left-8 glass-card p-8 max-w-xs hidden md:block">
+<div class="text-luxury-gold font-display-xl text-headline-lg mb-2">06+</div>
+<div class="font-label-bold uppercase tracking-widest">Years of Transformational Excellence</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Vision -->
+<section class="py-section-gap bg-surface-container-lowest relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/2 h-full bg-luxury-gold/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="glass-card p-12 flex flex-col justify-between aspect-square md:aspect-video lg:aspect-square reveal active" style="--mouse-x: 61px; --mouse-y: 200px;">
+<span class="material-symbols-outlined text-luxury-gold text-5xl mb-8" style="font-variation-settings: &quot;FILL&quot; 1;">target</span>
+<div>
+<h3 class="font-headline-md text-headline-md mb-4 uppercase">OUR MISSION</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              To empower individuals to transcend their limits through precision coaching, world-class amenities, and an uncompromising culture of discipline. We provide the tools; you provide the will.
+            </p>
+</div>
+</div>
+<div class="glass-card p-12 flex flex-col justify-between aspect-square md:aspect-video lg:aspect-square reveal active" style="transition-delay: 0.2s; --mouse-x: 94px; --mouse-y: 251px;">
+<span class="material-symbols-outlined text-luxury-gold text-5xl mb-8" style="font-variation-settings: &quot;FILL&quot; 1;">visibility</span>
+<div>
+<h3 class="font-headline-md text-headline-md mb-4 uppercase">OUR VISION</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              To be the definitive destination for elite fitness in the region, recognized for our commitment to results and our role in fostering a community of peak performers.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Masonry Gallery Reveal -->
+<section class="py-20 md:py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-section-gap/2 flex flex-col md:flex-row justify-between items-end gap-6 reveal active">
+<h2 class="font-headline-lg text-headline-lg uppercase">THE <br> FACILITY</h2>
+<p class="font-label-bold uppercase text-on-surface-variant tracking-[0.2em]">6,000 SQ FT of Pure Performance</p>
+</div>
+<div class="masonry">
+<div class="masonry-item-tall group overflow-hidden border border-white/5 reveal active">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaK0YXGMpm7FrkKJYUMsSLVlVcAGLfLHtsctdPSJ3h1mzkWOidr2401a0k7-hVxCz96D6iXmtmQcqA2Lk_vvwY6M7KBMoeBPq6ZRgMT4yglED0aSJzgTXyn6OLnI6lmq7-GmGCTphPKM6lSWuB3OHkVfgw8guFB9mTkoxM1ALjLmb4Y5yo97Y1D0vjNiUOICt0bs-DiGoaIiwfvYZyOsgnOPz6Pv9RZXLA_nCUH3ZbyOOvzMPswTAMD6aQDsGAsOW2igqUKY9baMw">
+</div>
+<div class="masonry-item-wide group overflow-hidden border border-white/5 reveal active" style="transition-delay: 0.1s">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLOIzqU81P8CUKovFEIDA8gMIZp28JWpkecTSUkutMLkWGqrHOojq5D-pOxZ_raN2vEE4wP6loGP3YOcfD2_xPCNJr95nY8g-pDXSUDAlX8hzw1JahctfXzm_851afHUTG_9rm4fPXitXftCWPOXbkfVyXyufGHZ_KgXTQfsWbYUT1HQ-USMd9ILleQ6I6smNZjjF_DJqSuklk5tdHZu2sDqt9OQnIrdo9NncYKFZXyh-qCav1cFdXBtL_l5WkjNPUsQqT_Q1pP88">
+</div>
+<div class="group overflow-hidden border border-white/5 reveal active" style="transition-delay: 0.2s">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFyKXWSsQX1EquNdPQYSBLGMAhXBTIvbkrSLc-caOCgolOOH2zp4ifhU8GvXwbswr7RI6CGlMtpTlGLgOOKJY8ojEbp-CSoHu84FC_m5IGNa3psE0x-x3jezVBf5VKgpdybGOS1VkZG3LVmtBS3Ymx9df74qwSIS3wIJS76MD19xON3mf6BWpC0v5cnU-iNG7To13vVMfBEyMrRFJstbhvC6XPJJJDQYBzhwr3oI7ks9SPquqMf_q4Mh2gkUVuzOm1NvuYJ_ChiAc">
+</div>
+<div class="masonry-item-tall group overflow-hidden border border-white/5 reveal active" style="transition-delay: 0.3s">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1AOmzYI8x9URPhZQAN9t-W-Xx2ogsaA0IPWRQzrUlEEa25_kLyCHwl_yFW5-QQznpDsXODS33QnzwJAVfdz0qOrM6UsIGH42dL5YjrsMlzjy6-ZOB2LiiUmE4LvwrNQzJrMK9-saTQjQYbW0jgntVVhsTRry_I-mpAFqD8j9Uy6sEi7Zr0GbcaWKPMmmK2PQlDOnbNscdmYDHjQ_lenx-daqniIZLXyazhcI0YaVHAJ6ofsRx_0r7nfj76pvLBRARCji31AmtYvY">
+</div>
+<div class="group overflow-hidden border border-white/5 reveal active" style="transition-delay: 0.4s">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxNaKNy88DDqfhq_Rjc4DLckP5eV6_bun_SD3tHq9dgufnPeatYWuiYtFs3LVdKJsdNlNYdW-N96T5aSDEGLm-gcicEcLOXQpw7R_EBIdrd87jvwRC-KH9zxLq1jD1H_UY9Q7zb5ElLelw7XJHS2JK5-8hCJ1ZjqnPdGLq0H8g3zGsVhVX16J4Ta8UhPSPJpfXyDfi3pYFICxYMqj1oQTKUAp72LUAQV6w2WJALcn_QsdAmqnc-nXSHv8x8s--sqdORks3cqHfqrc">
+</div>
+</div>
+</section>
+<!-- Testimonials Carousel -->
+<section class="py-section-gap bg-surface-container overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto reveal active">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg uppercase mb-4">ELITE FEEDBACK</h2>
+<div class="w-20 h-1 bg-luxury-gold mx-auto"></div>
+</div>
+<div class="relative max-w-4xl mx-auto h-[400px] md:h-[300px]">
+<!-- Slide 1 -->
+<div class="testimonial-slide absolute inset-0 opacity-0 z-0" id="slide-0">
+<div class="glass-card p-10 border-none bg-surface/40 h-full flex flex-col justify-center">
+<div class="flex gap-1 text-luxury-gold mb-6">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg italic mb-8">"The atmosphere here is unmatched. It's not just about the equipment, which is top-tier, but the mindset of everyone who trains here. Truly the elite choice in Mian Channu."</p>
+<div class="font-label-bold uppercase tracking-wider">— Ahmed S., Competitive Athlete</div>
+</div>
+</div>
+<!-- Slide 2 -->
+<div class="testimonial-slide absolute inset-0 opacity-100 z-10" id="slide-1">
+<div class="glass-card p-10 border-none bg-surface/40 h-full flex flex-col justify-center">
+<div class="flex gap-1 text-luxury-gold mb-6">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg italic mb-8">"RB Fitness changed my perception of what a gym could be. The attention to detail in the facility makes every workout feel like a premium experience."</p>
+<div class="font-label-bold uppercase tracking-wider">— Fatima R., Corporate Professional</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center gap-4 mt-8">
+<button class="w-2 h-2 rounded-full bg-white/20 transition-all duration-300" id="dot-0" onclick="goToSlide(0)"></button>
+<button class="w-2 h-2 rounded-full bg-luxury-gold transition-all duration-300 w-6" id="dot-1" onclick="goToSlide(1)"></button>
+</div>
+</div>
+</section>
+<!-- Contact & Map Section -->
+<section class="py-20 md:py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-section-gap/4">
+<!-- Contact Form -->
+<div class="lg:col-span-6 reveal active">
+<h2 class="font-headline-lg text-headline-lg uppercase mb-4">GET IN TOUCH</h2>
+<p class="font-body-md text-on-surface-variant mb-12">Have questions about our memberships or personal training? Reach out to our elite team.</p>
+<div id="form-container">
+<form id="contact-form" class="space-y-8">
+<!-- Honeypot Field -->
+<input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="relative form-input-group">
+<label class="font-label-bold text-luxury-gold uppercase text-[10px] tracking-widest absolute -top-2 left-0">Full Name</label>
+<input id="name" name="name" class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-luxury-gold transition-colors font-body-md text-on-surface" placeholder="John Doe" type="text" required>
+</div>
+<div class="relative form-input-group">
+<label class="font-label-bold text-luxury-gold uppercase text-[10px] tracking-widest absolute -top-2 left-0">Email Address</label>
+<input id="email" name="email" class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-luxury-gold transition-colors font-body-md text-on-surface" placeholder="john@example.com" type="email" required>
+</div>
+</div>
+<div class="relative form-input-group">
+<label class="font-label-bold text-luxury-gold uppercase text-[10px] tracking-widest absolute -top-2 left-0">Message</label>
+<textarea id="message" name="message" class="w-full bg-transparent border-b border-white/20 py-4 focus:outline-none focus:border-luxury-gold transition-colors font-body-md text-on-surface resize-none" placeholder="How can we help you?" rows="4" required></textarea>
+</div>
+<div id="form-error" class="text-error text-sm font-label-bold hidden">Failed to send message. Please try again later.</div>
+<button id="submit-btn" class="w-full md:w-auto bg-luxury-gold text-surface px-12 py-4 font-label-bold uppercase transition-all duration-300 hover:bg-white active:scale-95 hover:shadow-xl hover:shadow-luxury-gold/20 disabled:opacity-50 disabled:cursor-not-allowed" type="submit">
+            Send Message
+          </button>
+</form>
+</div>
+
+<!-- Success State Container (Hidden by default) -->
+<div id="success-container" class="hidden glass-card p-12 text-center reveal active" style="--mouse-x: 50%; --mouse-y: 50%;">
+<span class="material-symbols-outlined text-status-success text-6xl mb-6">check_circle</span>
+<h3 class="font-headline-md text-headline-md mb-4 uppercase text-on-surface">Message Received</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+    Thank you for reaching out to RB Fitness. Our elite team will get back to you shortly.
+</p>
+</div>
+<div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<div class="text-luxury-gold font-label-bold uppercase tracking-widest mb-2">Direct Line</div>
+<div class="font-headline-md text-headline-md">0333 7614946</div>
+</div>
+<div>
+<div class="text-luxury-gold font-label-bold uppercase tracking-widest mb-2">Social Hub</div>
+<div class="flex gap-6">
+<a class="text-on-surface hover:text-luxury-gold transition-colors" href="#"><span class="font-label-bold uppercase text-xs">Instagram</span></a>
+<a class="text-on-surface hover:text-luxury-gold transition-colors" href="#"><span class="font-label-bold uppercase text-xs">Facebook</span></a>
+</div>
+</div>
+</div>
+</div>
+<!-- Map & Location Reveal -->
+<div class="lg:col-span-6 flex flex-col gap-8 reveal active" style="transition-delay: 0.3s">
+<div class="glass-card flex-grow min-h-[400px] relative overflow-hidden group border-white/10" style="--mouse-x: 378px; --mouse-y: 449px;">
+<img class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-[2000ms]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnZdw2hptQa4g49FHjlKA06CDRZ1BYD37XiM_kCGySECPALaKRqS8INtbL2d-r55Co7dzE4gv5x4nifmeLJKdxKfLZiaHQP2xDZMe5J46IXqHJxKkdAd5y0FntSr29VVYZn2L97Aq9a9Lvjkc6Xq-dEUk_u2GqNrM-WnzwFOtnofzyr30vDbhTjYwvwaKqa4yDcLd4d0VYs7EQ9K9V5oTlvrDYrkhGAyrbExqE67x8Fp49hulEVOMhmwiih33r-RF-hARUfk5yClQ">
+<div class="absolute inset-0 flex items-center justify-center">
+<a href="https://www.google.com/maps/search/?api=1&amp;query=RB+Fitness+Main+GT+Road+Near+Rescue+1122+Mian+Channu+Pakistan" target="_blank" rel="noopener noreferrer" class="bg-luxury-gold text-surface p-4 rounded-full shadow-2xl shadow-luxury-gold/40 animate-bounce">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+</a>
+</div>
+</div>
+<div class="p-8 bg-surface-container-high border border-white/10 rounded-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.1)]" style="--mouse-x: 284px; --mouse-y: 173.0107421875px;"><h3 class="font-label-bold uppercase tracking-[0.2em] mb-4 text-luxury-gold text-xs">Location Details</h3><p class="font-display-xl text-headline-md mb-2 uppercase tracking-tight text-on-surface">RB FITNESS HEADQUARTERS</p><p class="font-body-md text-on-surface-variant leading-relaxed">Main GT Road, Near Rescue 1122,<br>Mian Channu, Pakistan</p><div class="mt-6 flex items-center gap-4 text-sm font-label-bold uppercase text-luxury-gold/80"><span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-status-success animate-pulse"></span> Open 24/7 for Elite Members</span></div></div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest text-on-surface-variant full-width bottom-0 border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-start gap-gutter px-margin-mobile md:px-margin-desktop py-20 md:py-section-gap max-w-container-max mx-auto">
+<div class="flex flex-col gap-6 max-w-sm">
+<div class="font-display-xl text-headline-md text-luxury-gold uppercase tracking-tighter"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbuZ2U4GKW2f0_aBdbZ0uX8Wuz2deYbb_5_n6aGmkMnPS1roTf7ibI6yyYS6BITv9vQWmSfxb7ZDWQL9o8_cSEUZQlqnuQxjalVIj0L8k_6J9snqxwB5l4Qof-N68q73FlwhVhl7mwci-iEHT4FgEl-8yN3Ls7pERu8DKNUMT2DyFAX9rqfUQrm83x47ULRlP8Nzqp87fMysLK7oWhNOBhf7P4gRp3rAcTbpH0VGyj9y090ZsME46fWQuf2VJQuJLDzREmn004GFs" alt="RB FITNESS Logo" class="h-12 w-auto object-contain"></div>
+<p class="font-body-md">Transform Your Body, Transform Your Life. Join the elite community in Mian Channu and experience fitness at its peak.</p>
+<div class="font-body-md text-on-surface-variant">© 2024 RB Fitness Mian Channu.</div>
+</div>
+<div class="grid grid-cols-2 gap-x-24 gap-y-4">
+<div class="flex flex-col gap-4">
+<h4 class="text-on-surface font-label-bold uppercase text-xs tracking-widest mb-2">Training</h4>
+<a class="hover:text-on-surface transition-colors" href="#">Elite Training</a>
+<a class="hover:text-on-surface transition-colors" href="#">Luxury Memberships</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-on-surface font-label-bold uppercase text-xs tracking-widest mb-2">Legal</h4>
+<a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="col-span-2 mt-4 pt-4 border-t border-white/5">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-label-bold uppercase text-xs tracking-widest">Location: Mian Channu</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Mobile Menu Logic
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    function toggleMobileMenu() {
+        hamburgerBtn.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        mobileDrawer.classList.toggle('active');
+        document.body.style.overflow = mobileDrawer.classList.contains('active') ? 'hidden' : '';
+    }
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Reveal Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Parallax Hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.getElementById('hero-parallax');
+      if (parallax) {
+        parallax.style.transform = `scale(1.1) translateY(${scrolled * 0.3}px)`;
+      }
+    });
+
+    // Testimonial Carousel Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('[id^="dot-"]');
+    function goToSlide(index) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.replace('opacity-0', 'opacity-100');
+          slide.classList.replace('z-0', 'z-10');
+          dots[i].classList.replace('bg-white/20', 'bg-luxury-gold');
+          dots[i].classList.add('w-6');
+        } else {
+          slide.classList.replace('opacity-100', 'opacity-0');
+          slide.classList.replace('z-10', 'z-0');
+          dots[i].classList.replace('bg-luxury-gold', 'bg-white/20');
+          dots[i].classList.remove('w-6');
+        }
+      });
+      currentSlide = index;
+    }
+    setInterval(() => {
+      let nextSlide = (currentSlide + 1) % slides.length;
+      goToSlide(nextSlide);
+    }, 5000);
+    dots[0].classList.add('w-6');
+
+    // Glass card mouse interaction
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // Form Submission Logic
+    const contactForm = document.getElementById('contact-form');
+    const formContainer = document.getElementById('form-container');
+    const successContainer = document.getElementById('success-container');
+    const submitBtn = document.getElementById('submit-btn');
+    const formError = document.getElementById('form-error');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Reset error state
+        formError.classList.add('hidden');
+        
+        // Lock button
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
+
+        const formData = new FormData(contactForm);
+        const payload = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (response.ok) {
+            // Swap form with success state container
+            formContainer.classList.add('hidden');
+            successContainer.classList.remove('hidden');
+            
+            // Re-trigger glass card mouse interaction for the new container
+            successContainer.addEventListener('mousemove', (e) => {
+              const rect = successContainer.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              successContainer.style.setProperty('--mouse-x', `${x}px`);
+              successContainer.style.setProperty('--mouse-y', `${y}px`);
+            });
+          } else {
+            throw new Error('Server returned an error');
+          }
+        } catch (error) {
+          console.error('Submission failed:', error);
+          formError.classList.remove('hidden');
+        } finally {
+          // Restore button state
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalBtnText;
+        }
+      });
+    }
+</script>
+
+
+
+
+</body></html>

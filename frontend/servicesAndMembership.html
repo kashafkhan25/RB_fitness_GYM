@@ -1,0 +1,519 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Services &amp; Memberships | RB FITNESS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#121414",
+                    "surface-tint": "#c9c6c5",
+                    "surface-container-highest": "#333535",
+                    "on-primary-container": "#7b7979",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "surface-container": "#1e2020",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-variant": "#333535",
+                    "outline": "#8e9192",
+                    "on-secondary": "#313030",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-dim": "#121414",
+                    "secondary": "#c8c6c5",
+                    "on-tertiary-fixed": "#351000",
+                    "error-container": "#93000a",
+                    "primary-fixed-dim": "#c9c6c5",
+                    "on-tertiary-fixed-variant": "#7a3000",
+                    "primary-container": "#0b0b0b",
+                    "on-surface-variant": "#c4c7c7",
+                    "on-surface": "#e2e2e2",
+                    "outline-variant": "#444748",
+                    "surface-container-lowest": "#0c0f0f",
+                    "surface-glass": "rgba(20, 20, 20, 0.7)",
+                    "inverse-surface": "#e2e2e2",
+                    "tertiary-fixed-dim": "#ffb693",
+                    "on-tertiary": "#561f00",
+                    "on-error": "#690005",
+                    "inverse-primary": "#5f5e5e",
+                    "status-success": "#39FF14",
+                    "surface-bright": "#37393a",
+                    "on-tertiary-container": "#cd5400",
+                    "tertiary-container": "#1a0500",
+                    "primary-fixed": "#e5e2e1",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-low": "#1a1c1c",
+                    "surface-container-high": "#282a2b",
+                    "secondary-container": "#4a4949",
+                    "on-background": "#e2e2e2",
+                    "luxury-gold": "#FFD700",
+                    "tertiary": "#ffb693",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed-variant": "#474646",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "on-primary": "#313030",
+                    "inverse-on-surface": "#2f3131",
+                    "primary": "#c9c6c5",
+                    "background": "#121414",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-secondary-container": "#bab8b7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "section-gap": "160px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "display-xl": ["Anton"],
+                    "body-md": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "headline-lg-mobile": ["Anton"],
+                    "headline-lg": ["Anton"],
+                    "headline-md": ["Anton"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "display-xl": ["120px", {"lineHeight": "110px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                    "headline-lg": ["64px", {"lineHeight": "72px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .glass-border { border: 1px solid rgba(255, 255, 255, 0.1); }
+        .ghost-border { border: 1px solid rgba(255, 255, 255, 0.05); }
+        .vibrant-orange-btn { background-color: #FF5F1F; color: black; }
+        .luxury-gold-badge { background-color: #FFD700; color: black; }
+        .hero-gradient { background: radial-gradient(circle at 50% 50%, rgba(255, 95, 31, 0.08) 0%, transparent 70%); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .stagger-1 { animation-delay: 0.2s; }
+        .stagger-2 { animation-delay: 0.4s; }
+        .stagger-3 { animation-delay: 0.6s; }
+
+        .stacked-section { display: flex; flex-direction: column; gap: 24px; }
+        @media (min-width: 768px) {
+            .sticky-card { position: sticky; top: 100px; transition: transform 0.3s ease, filter 0.3s ease; }
+        }
+
+        .carousel-container { display: flex; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; gap: 24px; padding-bottom: 20px; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-item { flex: 0 0 280px; }
+        @media (min-width: 1024px) { .carousel-item { flex: 0 0 calc(25% - 18px); } }
+
+        .hover-glow { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hover-glow:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -10px rgba(255, 95, 31, 0.2); border-color: rgba(255, 95, 31, 0.4); }
+
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease; }
+        .group.active .accordion-content { max-height: 200px; padding-top: 1rem; }
+        .group.active .material-symbols-outlined { transform: rotate(180deg); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Mobile Menu */
+        .mobile-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .mobile-overlay.active { opacity: 1; pointer-events: auto; }
+        .mobile-drawer { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .mobile-drawer.active { transform: translateX(0); }
+        .hamburger-line { transition: all 0.3s ease; }
+        .hamburger.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-on-tertiary-container selection:text-white">
+<!-- TopNavBar -->
+<nav class="bg-surface-glass backdrop-blur-md text-on-surface docked full-width top-0 sticky z-50 border-b border-white/10">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-display-xl text-headline-md uppercase text-on-surface"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbuZ2U4GKW2f0_aBdbZ0uX8Wuz2deYbb_5_n6aGmkMnPS1roTf7ibI6yyYS6BITv9vQWmSfxb7ZDWQL9o8_cSEUZQlqnuQxjalVIj0L8k_6J9snqxwB5l4Qof-N68q73FlwhVhl7mwci-iEHT4FgEl-8yN3Ls7pERu8DKNUMT2DyFAX9rqfUQrm83x47ULRlP8Nzqp87fMysLK7oWhNOBhf7P4gRp3rAcTbpH0VGyj9y090ZsME46fWQuf2VJQuJLDzREmn004GFs" alt="RB FITNESS" class="h-12 w-auto object-contain"></div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="homeaPage.html">Home</a>
+<a class="font-body-md text-body-md text-on-tertiary-container font-bold border-b-2 border-on-tertiary-container pb-1" href="servicesAndMembership.html">Services &amp; Memberships</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="aboutAndContact.html">About &amp; Contact</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="vibrant-orange-btn font-label-bold text-label-bold uppercase px-4 sm:px-8 py-3 transition-all duration-300 active:scale-95 hover:brightness-110 text-xs sm:text-sm">Join Now</button>
+<button class="md:hidden hamburger flex flex-col justify-center items-center w-10 h-10 gap-[5px] z-[110]" id="hamburger-btn" aria-label="Toggle menu">
+<span class="hamburger-line block w-6 h-[2px] bg-on-surface"></span>
+<span class="hamburger-line block w-6 h-[2px] bg-on-surface"></span>
+<span class="hamburger-line block w-6 h-[2px] bg-on-surface"></span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Mobile Menu Overlay -->
+<div class="mobile-overlay fixed inset-0 bg-black/60 backdrop-blur-sm z-[105]" id="mobile-overlay"></div>
+<!-- Mobile Drawer -->
+<nav class="mobile-drawer fixed top-0 right-0 w-[75%] max-w-[320px] h-full bg-surface-container-lowest border-l border-white/10 z-[110] flex flex-col pt-24 px-8" id="mobile-drawer">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-lg uppercase py-4 border-b border-white/5" href="homeaPage.html">Home</a>
+<a class="text-on-tertiary-container font-bold text-lg uppercase py-4 border-b border-white/5" href="servicesAndMembership.html">Services &amp; Memberships</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors text-lg uppercase py-4 border-b border-white/5" href="aboutAndContact.html">About &amp; Contact</a>
+<button class="vibrant-orange-btn px-6 py-4 font-label-bold uppercase mt-8 hover:brightness-110 transition-all">Join Now</button>
+</nav>
+<!-- Services Hero -->
+<header class="relative min-h-[716px] flex items-center overflow-hidden hero-gradient">
+<div class="absolute inset-0 z-0">
+<img alt="Elite Gym Interior" class="w-full h-full object-cover opacity-40 scale-105" data-alt="A cinematic, low-angle shot of a high-end luxury gym interior at night..." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_JP8_AfI96IGiiDUhqXKvFDBc7ZPpBW4uX4X_O7u0H2pS3vbY3X9hmsuxlhYFn16YCDccMd8lddmSrnTSI4k8ihgXjJ29qKP5MUZbxPkapx-7xcz3sOyfdjXscsGI_AlV61cRzg_-nSEOQcYjNj-anZUHUDkwDOof5afhUtzzyXefEvsZTda3hBxlVGuvplSO6UDdMLIlhgCyYy0RJvGOxfLyxI9bQm-aOe_AD42E0X7EN9nBTf5VcwA49UThEmkQYIEMt50hL50">
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto mt-20 md:mt-section-gap mb-20">
+<div class="max-w-[800px]">
+<span class="luxury-gold-badge px-3 py-1 text-label-sm font-label-bold uppercase mb-6 inline-block animate-fade-in-up">Elite Services</span>
+<h1 class="font-display-xl text-headline-lg-mobile md:text-headline-lg lg:text-display-xl uppercase mb-8 animate-fade-in-up stagger-1">Architects of <br><span class="text-on-tertiary-container">Human Performance</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12 animate-fade-in-up stagger-2">Beyond exercise. We provide the elite coaching, environment, and science-backed programming required to transcend your physical limits.</p>
+<div class="flex gap-4 animate-fade-in-up stagger-3">
+<button class="vibrant-orange-btn px-10 py-4 font-label-bold text-label-bold uppercase hover:shadow-lg transition-shadow">Explore Plans</button>
+<button class="border border-white/20 px-10 py-4 font-label-bold text-label-bold uppercase hover:bg-white/10 transition-colors">Book Consultation</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Detailed Service Sections - Stacked Scroll Effect -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<section class="py-section-gap reveal active">
+<div class="stacked-section">
+<!-- Personal Training -->
+<div class="sticky-card group relative h-[500px] bg-surface-container overflow-hidden ghost-border rounded-lg" style="margin-top: 0px;">
+<img alt="Personal Training" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeKEoic-hFwCP3GUCKhSTiHqEGmsKH8ceT1CydZApdrkZpkDV3d4anYyzDfgqVQdA-TPDi5oMpfAmlMgtcZrCqPyrS6IihlUvyGGz_TGp8xzAWhdk4GJlBwS0mSPAubVFIPqAaFhzsJn8ZK3qcC5tp7jm4CwIfdZ01Y60mX0GBHbAdsRZy-tzEnsIcMbjWwHuIivsOQ_aSEK0AZfNms2HhFDYo6TxztR9mGK072qUOjZMb2HhDrxPld4sn1Y0isqCeYtL9rTBvNwk">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent p-10 flex flex-col justify-end">
+<h3 class="font-display-xl text-headline-lg uppercase mb-4">Personal Training</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mb-6">One-on-one elite mentorship. Data-driven progressions and bio-mechanically optimized movements tailored to your unique anatomy.</p>
+<a class="text-on-tertiary-container font-label-bold uppercase flex items-center gap-2 group/link" href="#">
+                        Learn Strategy <span class="material-symbols-outlined group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Bodybuilding -->
+<div class="sticky-card group relative h-[500px] bg-surface-container overflow-hidden ghost-border rounded-lg" style="margin-top: 40px;">
+<img alt="Bodybuilding" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBktlrRWMUXHUYu4zg-c2Wq6qTFktc_QyB35uhoBkKxTED9txwSkM50z8T4ZIxd84Dp53VqQSSER0Gs7WpuzmyePrGOMCx-c_hsoloRrOrNnFoI98c-EYQ1cbc6iGvmC1zJiUuO02Ax-iNC6uCMAOKvZ6ZZZaNAr4n4NTTIAGvuQRLxM1R0uFpHN9oXZi2nYOvogLfBkOGUL_TWuVYkjGtAK496FssKWiCbTZenqWCFtW99JxkFoRG4xRDrnkmrm2e5_HcflsO46Vc">
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent p-10 flex flex-col justify-center max-w-xl">
+<h3 class="font-display-xl text-headline-lg uppercase mb-4">Bodybuilding <br>Coaching</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">For those seeking the pinnacle of aesthetic development. Prep-ready protocols, posing clinic, and peak-week management.</p>
+<button class="border border-on-tertiary-container text-on-tertiary-container w-max px-8 py-3 font-label-bold uppercase hover:bg-on-tertiary-container hover:text-white transition-all">Apply for Prep</button>
+</div>
+</div>
+<!-- Optimization Grid (Combined smaller blocks for the stacked layout) -->
+<div class="sticky-card grid grid-cols-1 md:grid-cols-2 gap-gutter" style="margin-top: 80px;">
+<!-- Weight Loss -->
+<div class="bg-surface-container p-10 ghost-border rounded-lg flex flex-col justify-between">
+<div>
+<span class="text-on-tertiary-container material-symbols-outlined text-4xl mb-8">speed</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Metabolic Optimization</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Strategic weight loss protocols focusing on fat oxidation while preserving lean muscle mass through metabolic conditioning.</p>
+</div>
+<ul class="space-y-3 font-label-sm text-label-sm text-on-surface uppercase tracking-widest">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-success text-sm">check_circle</span> Hormonal Alignment</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-status-success text-sm">check_circle</span> Macro Coaching</li>
+</ul>
+</div>
+<!-- Muscle Gain -->
+<div class="bg-surface-container p-10 ghost-border rounded-lg flex flex-col justify-between">
+<div>
+<span class="text-on-tertiary-container material-symbols-outlined text-4xl mb-8">rebase_edit</span>
+<h3 class="font-headline-md text-headline-md uppercase mb-4">Hypertrophy Lab</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Precision weight gain for the hard-gainer. Calculated caloric surpluses paired with progressive mechanical tension.</p>
+</div>
+<div class="h-1 bg-surface-container-highest w-full mb-4">
+<div class="h-full bg-on-tertiary-container w-[75%]"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant italic uppercase">Advanced Loading Protocols</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Classes Section - Carousel Conversion -->
+<section class="py-section-gap border-t border-white/5 reveal active">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-display-xl text-headline-lg uppercase mb-4">Dynamic <span class="text-luxury-gold">Disciplines</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">High-intensity group environments led by world-class practitioners. From combat sports to high-cadence rhythm training.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-4 border border-white/10 hover:bg-surface-container transition-colors" id="prevBtn"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-4 border border-white/10 hover:bg-surface-container transition-colors" id="nextBtn"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="carousel-container" id="disciplinesCarousel">
+<!-- Kickboxing -->
+<div class="carousel-item group bg-surface-container-low p-8 ghost-border rounded-lg hover:bg-surface-container transition-all cursor-pointer">
+<div class="mb-12 flex justify-between items-start">
+<span class="material-symbols-outlined text-on-tertiary-container text-4xl">sports_martial_arts</span>
+<span class="text-label-sm text-on-surface-variant">45 MIN</span>
+</div>
+<h4 class="font-headline-md text-headline-md uppercase mb-4">Kickboxing</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Technical striking and cardiovascular endurance in a high-pressure environment.</p>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="font-label-sm text-label-sm uppercase opacity-60">High Intensity</span>
+</div>
+</div>
+<!-- Cycling -->
+<div class="carousel-item group bg-surface-container-low p-8 ghost-border rounded-lg hover:bg-surface-container transition-all cursor-pointer">
+<div class="mb-12 flex justify-between items-start">
+<span class="material-symbols-outlined text-on-tertiary-container text-4xl">pedal_bike</span>
+<span class="text-label-sm text-on-surface-variant">60 MIN</span>
+</div>
+<h4 class="font-headline-md text-headline-md uppercase mb-4">Elite Cycling</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Rhythm-based aerobic power training on state-of-the-art sensory bikes.</p>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-luxury-gold"></div>
+<span class="font-label-sm text-label-sm uppercase opacity-60">Medium-High</span>
+</div>
+</div>
+<!-- Zumba -->
+<div class="carousel-item group bg-surface-container-low p-8 ghost-border rounded-lg hover:bg-surface-container transition-all cursor-pointer">
+<div class="mb-12 flex justify-between items-start">
+<span class="material-symbols-outlined text-on-tertiary-container text-4xl">celebration</span>
+<span class="text-label-sm text-on-surface-variant">50 MIN</span>
+</div>
+<h4 class="font-headline-md text-headline-md uppercase mb-4">Zumba Elite</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Calorie-torching dance choreography fused with modern athletic movements.</p>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm uppercase opacity-60">High Energy</span>
+</div>
+</div>
+<!-- Jazzercise -->
+<div class="carousel-item group bg-surface-container-low p-8 ghost-border rounded-lg hover:bg-surface-container transition-all cursor-pointer">
+<div class="mb-12 flex justify-between items-start">
+<span class="material-symbols-outlined text-on-tertiary-container text-4xl">fitness_center</span>
+<span class="text-label-sm text-on-surface-variant">45 MIN</span>
+</div>
+<h4 class="font-headline-md text-headline-md uppercase mb-4">Jazzercise</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Classic dance-fitness redefined with modern strength and resistance training.</p>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-sm text-label-sm uppercase opacity-60">Full Body</span>
+</div>
+</div>
+<!-- Pilates (New addition to show carousel depth) -->
+<div class="carousel-item group bg-surface-container-low p-8 ghost-border rounded-lg hover:bg-surface-container transition-all cursor-pointer">
+<div class="mb-12 flex justify-between items-start">
+<span class="material-symbols-outlined text-on-tertiary-container text-4xl">self_improvement</span>
+<span class="text-label-sm text-on-surface-variant">55 MIN</span>
+</div>
+<h4 class="font-headline-md text-headline-md uppercase mb-4">Control Lab</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">Mat and reformer pilates designed to strengthen the deep core and improve posture.</p>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-label-sm text-label-sm uppercase opacity-60">Low Impact</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Membership Plans -->
+<section class="py-section-gap reveal active">
+<div class="text-center mb-20">
+<h2 class="font-display-xl text-headline-lg uppercase mb-4 text-white">Choose Your <span class="text-on-tertiary-container">Commitment</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">No contracts. No hidden fees. Just pure focus on your evolution.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-stretch">
+<!-- Basic -->
+<div class="hover-glow bg-surface-container p-10 ghost-border rounded-lg flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">Core Access</h3>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-display-xl text-headline-lg">PKR 5,000</span>
+<span class="font-body-md text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-8">The essential performance foundation for serious athletes.</p>
+</div>
+<button class="w-full border border-white/20 py-4 font-label-bold uppercase hover:bg-white/5 transition-all">Get Started</button>
+</div>
+<!-- Pro (Featured) -->
+<div class="hover-glow bg-surface-container-high p-10 glass-border rounded-lg flex flex-col justify-between relative md:scale-110 z-10 border-on-tertiary-container/30">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 luxury-gold-badge px-6 py-1 font-label-bold uppercase text-xs">Recommended</div>
+<div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">Black Label</h3>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-display-xl text-headline-lg text-luxury-gold">PKR 8,500</span>
+<span class="font-body-md text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-8">Full access to the facility and dynamic classes. Peak optimization.</p>
+</div>
+<button class="w-full vibrant-orange-btn py-4 font-label-bold uppercase transition-all shadow-xl shadow-on-tertiary-container/10 hover:shadow-orange-500/20">Select Black</button>
+</div>
+<!-- Elite -->
+<div class="hover-glow bg-surface-container p-10 ghost-border rounded-lg flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md uppercase mb-2">The Elite</h3>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="font-display-xl text-headline-lg">PKR 15,000</span>
+<span class="font-body-md text-on-surface-variant">/mo</span>
+</div>
+<p class="font-body-md text-on-surface-variant mb-8">Private suites, elite personal coaching, and recovery protocols.</p>
+</div>
+<button class="w-full border border-white/20 py-4 font-label-bold uppercase hover:bg-white/5 transition-all">Go Elite</button>
+</div>
+</div>
+</section>
+<!-- FAQ Section - Accordion Enhancement -->
+<section class="py-section-gap border-t border-white/5 reveal active">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4">
+<h2 class="font-display-xl text-headline-lg uppercase mb-6 leading-tight">Your Questions <br><span class="text-on-tertiary-container">Answered</span></h2>
+<p class="font-body-md text-on-surface-variant">Everything you need to know about the RB Fitness ecosystem and elite memberships.</p>
+</div>
+<div class="md:col-span-8 space-y-4" id="faqAccordion">
+<div class="bg-surface-container-low p-6 ghost-border cursor-pointer group transition-all duration-300 hover:border-white/20">
+<div class="flex justify-between items-center faq-header">
+<h4 class="font-label-bold text-label-bold uppercase">Can I freeze my membership?</h4>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="text-on-surface-variant font-body-md">
+                            Yes, memberships can be frozen for up to 3 months per year for medical or travel reasons. Simply contact member services via the app 7 days in advance.
+                        </p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 ghost-border cursor-pointer group transition-all duration-300 hover:border-white/20">
+<div class="flex justify-between items-center faq-header">
+<h4 class="font-label-bold text-label-bold uppercase">Are classes included in all plans?</h4>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="text-on-surface-variant font-body-md">
+                            Classes are included in Black Label and Elite memberships. Core members can purchase class bundles separately at a discounted rate.
+                        </p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 ghost-border cursor-pointer group transition-all duration-300 hover:border-white/20">
+<div class="flex justify-between items-center faq-header">
+<h4 class="font-label-bold text-label-bold uppercase">Do you offer nutrition plans?</h4>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="text-on-surface-variant font-body-md">
+                            Nutrition is a core pillar of our Elite membership. For Core and Black members, custom meal protocols can be added through our on-site sports nutritionist.
+                        </p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 ghost-border cursor-pointer group transition-all duration-300 hover:border-white/20">
+<div class="flex justify-between items-center faq-header">
+<h4 class="font-label-bold text-label-bold uppercase">What is the cancellation policy?</h4>
+<span class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+</div>
+<div class="accordion-content">
+<p class="text-on-surface-variant font-body-md">
+                            We believe in earned loyalty, not legal traps. You can cancel with a 30-day notice period. No hidden buyout fees or complicated paperwork.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-white/5 reveal active">
+<div class="flex flex-col md:flex-row justify-between items-start gap-gutter px-margin-mobile md:px-margin-desktop py-20 md:py-section-gap max-w-container-max mx-auto">
+<div class="flex flex-col gap-6 max-w-md">
+<div class="font-display-xl text-headline-md text-luxury-gold uppercase"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbuZ2U4GKW2f0_aBdbZ0uX8Wuz2deYbb_5_n6aGmkMnPS1roTf7ibI6yyYS6BITv9vQWmSfxb7ZDWQL9o8_cSEUZQlqnuQxjalVIj0L8k_6J9snqxwB5l4Qof-N68q73FlwhVhl7mwci-iEHT4FgEl-8yN3Ls7pERu8DKNUMT2DyFAX9rqfUQrm83x47ULRlP8Nzqp87fMysLK7oWhNOBhf7P4gRp3rAcTbpH0VGyj9y090ZsME46fWQuf2VJQuJLDzREmn004GFs" alt="RB FITNESS" class="h-16 w-auto object-contain"></div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 RB Fitness Mian Channu. Transform Your Body, Transform Your Life. The standard for high-performance fitness.</p>
+</div>
+<div class="grid grid-cols-2 gap-12">
+<div class="flex flex-col gap-4">
+<span class="font-label-bold text-label-sm uppercase text-on-surface tracking-tighter">Navigation</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Elite Training</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Luxury Memberships</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-bold text-label-sm uppercase text-on-surface tracking-tighter">Connect</span>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<span class="font-body-md text-body-md text-on-surface-variant">Location: Mian Channu</span>
+<div class="flex gap-4 mt-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-white transition-colors">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-white transition-colors">smartphone</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-white transition-colors">alternate_email</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Mobile Menu Logic
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    function toggleMobileMenu() {
+        hamburgerBtn.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        mobileDrawer.classList.toggle('active');
+        document.body.style.overflow = mobileDrawer.classList.contains('active') ? 'hidden' : '';
+    }
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Reveal Observer
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Carousel Logic
+    const carousel = document.getElementById('disciplinesCarousel');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    if (nextBtn && prevBtn && carousel) {
+        nextBtn.onclick = () => carousel.scrollBy({ left: 320, behavior: 'smooth' });
+        prevBtn.onclick = () => carousel.scrollBy({ left: -320, behavior: 'smooth' });
+    }
+
+    // FAQ Accordion Logic
+    document.querySelectorAll('#faqAccordion .group').forEach(item => {
+        item.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('#faqAccordion .group').forEach(other => other.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+
+    // Stacked Card Logic
+    window.addEventListener('scroll', () => {
+        const cards = document.querySelectorAll('.sticky-card');
+        cards.forEach((card) => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < 120 && rect.top > -400) {
+                const scaleFactor = 1 - (Math.abs(rect.top - 100) / 2000);
+            }
+        });
+    });
+</script>
+
+
+
+
+</body></html>

@@ -1,0 +1,11 @@
+{
+  "name": "rb-fitness-gym",
+  "version": "1.0.0",
+  "description": "RB Fitness Gym Website",
+  "scripts": {
+    "start": "node api/contact.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.13"
+  }
+}
